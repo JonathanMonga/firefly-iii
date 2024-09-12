@@ -37,6 +37,9 @@ RUN chown -R www-data:www-data /var/www/html
 # Copy .env.example to .env
 COPY .env.example .env
 
+# the directory may be different on your system:
+RUN touch ./storage/database/database.sqlite
+
 # Run Laravel commands
 RUN php artisan firefly-iii:upgrade-database \
     && php artisan firefly-iii:correct-database \
